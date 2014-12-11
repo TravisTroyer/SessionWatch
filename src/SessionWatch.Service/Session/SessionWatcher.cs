@@ -21,7 +21,7 @@ namespace SessionWatch.Service.Session
          }
       }
 
-      private void KillSteam()
+      private static void KillSteam()
       {
          try
          {
