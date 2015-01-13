@@ -5,23 +5,7 @@ using System.Management;
 namespace SessionWatch.Service
 {
    internal class Machine
-   {      
-      private static readonly Lazy<Machine> _machine;
-
-      static Machine()
-      {
-         _machine = new Lazy<Machine>(() => new Machine(), true);
-      }
-
-      private Machine()
-      {
-      }
-
-      public static Machine Current
-      {
-         get { return _machine.Value;}
-      } 
-
+   {            
       public String GetUsername()
       {         
          try
@@ -40,6 +24,7 @@ namespace SessionWatch.Service
             var result = results["UserName"]
                .ToString();
          
+
             return result;
             
          }
