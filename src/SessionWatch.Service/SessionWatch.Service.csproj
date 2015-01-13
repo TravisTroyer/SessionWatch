@@ -58,6 +58,7 @@
     <Compile Include="Installation\SessionWatchInstaller.Designer.cs">
       <DependentUpon>SessionWatchInstaller.cs</DependentUpon>
     </Compile>
+    <Compile Include="Machine.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
