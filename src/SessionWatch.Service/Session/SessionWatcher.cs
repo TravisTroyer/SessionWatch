@@ -14,7 +14,8 @@ namespace SessionWatch.Service.Session
          // NOTE: this is obviously crude, but accomplishes my goal for now
          // TODO: load configuration and respond accordingly
 
-         var currentUser = Machine.Current.GetUsername();
+         var machine = new Machine();
+         var currentUser = machine.GetUsername();
          
          switch(description.Reason)
          {
