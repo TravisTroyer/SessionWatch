@@ -7,18 +7,31 @@ namespace SessionWatch.Service.Session
 {
    internal sealed class SessionWatcher
    {
-      public void OnSessionChanged(SessionChangeDescription changeDescription)
+      private string _lastUser;
+
+      public void OnSessionChanged(SessionChangeDescription description)
       {
          // NOTE: this is obviously crude, but accomplishes my goal for now
          // TODO: load configuration and respond accordingly
-         switch(changeDescription.Reason)
+
+         var machine = new Machine();
+         var currentUser = machine.GetUsername();
+         
+         switch(description.Reason)
          {
             case SessionChangeReason.ConsoleConnect:
             case SessionChangeReason.SessionLogon:
             case SessionChangeReason.SessionUnlock:
-               KillSteam();
+               
+               if (!String.IsNullOrWhiteSpace(_lastUser) && currentUser != _lastUser)
+               {
+                  KillSteam();                  
+               }
+
                break;
          }
+
+         _lastUser = currentUser;
       }
 
       private static void KillSteam()
