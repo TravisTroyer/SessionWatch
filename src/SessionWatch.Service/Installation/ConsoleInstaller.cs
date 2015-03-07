@@ -2,7 +2,7 @@
 
 namespace SessionWatch.Service.Installation
 {
-   public class ConsoleInstaller
+   internal class ConsoleInstaller
    {
       public void Prompt()
       {

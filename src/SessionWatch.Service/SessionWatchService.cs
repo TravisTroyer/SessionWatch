@@ -6,6 +6,8 @@ namespace SessionWatch.Service
 {
    public partial class SessionWatchService : ServiceBase
    {
+      private SessionWatcher _sessionWatcher;
+
       public SessionWatchService()
       {
          InitializeComponent();
@@ -16,17 +18,22 @@ namespace SessionWatch.Service
 
       protected override void OnStart(string[] args)
       {
+         _sessionWatcher = new SessionWatcher();
       }
 
       protected override void OnStop()
       {
+         _sessionWatcher = null;
       }
 
       protected override void OnSessionChange(SessionChangeDescription changeDescription)
       {
          base.OnSessionChange(changeDescription);
-         
-         var watcher = new SessionWatcher();
+
+         var watcher = _sessionWatcher;
+
+         if (watcher == null) return;
+
          watcher.OnSessionChanged(changeDescription);
       }
    }
